@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desafio Clínico — Apresentador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/host.css" />
+</head>
+<body>
+  <!-- ========== SALA DE ESPERA ========== -->
+  <section class="screen lobby" id="lobby" hidden>
+    <div class="lobby-arc" aria-hidden="true"></div>
+
+    <div class="lobby-intro">
+      <p class="lobby-kicker">Odontologia, 6º período</p>
+      <h1 class="title-caps lobby-title">Desafio<br />Clínico</h1>
+      <p class="lobby-sub">Fratura coronária complicada em dentes permanentes</p>
+
+      <ol class="steps">
+        <li><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg></span><span>Aponte a câmera do celular para o QR code</span></li>
+        <li><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg></span><span>Ou acesse <strong id="displayUrl">…</strong></span></li>
+        <li><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg></span><span>Digite o PIN e o seu nome</span></li>
+      </ol>
+    </div>
+
+    <div class="lobby-join">
+      <div class="qr-card">
+        <div class="qr" id="qr" aria-label="QR code para entrar no quiz"></div>
+        <div class="pin">
+          <span>PIN da sala</span>
+          <strong id="pin">----</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="lobby-players">
+      <div class="lobby-players-head">
+        <p><strong id="playerCount">0</strong> <span id="playerWord">jogadores na sala</span></p>
+        <button class="btn" id="startBtn" disabled>Começar o quiz</button>
+      </div>
+      <ul class="name-cloud" id="nameCloud"></ul>
+      <p class="empty-hint" id="emptyHint">Os nomes aparecem aqui conforme as pessoas entram. Clique em um nome para remover.</p>
+    </div>
+  </section>
+
+  <!-- ========== PERGUNTA / RESPOSTA ========== -->
+  <section class="screen question" id="question" hidden>
+    <header class="q-top">
+      <p class="q-count" id="qCount">Pergunta 1 de 10</p>
+      <div class="q-status">
+        <p class="answered" id="answeredBox"><strong id="answered">0</strong> responderam</p>
+        <div class="timer" id="timer"><span id="timerNum">20</span></div>
+      </div>
+    </header>
+
+    <h2 class="q-text" id="qText"></h2>
+
+    <ol class="options" id="options"></ol>
+
+    <footer class="q-foot">
+      <button class="btn btn-ghost" id="skipBtn">Encerrar tempo</button>
+      <button class="btn" id="nextBtn" hidden>Ver placar</button>
+    </footer>
+  </section>
+
+  <!-- ========== PLACAR ========== -->
+  <section class="screen board" id="board" hidden>
+    <header class="board-head">
+      <h2 class="title-caps">Placar</h2>
+      <p id="boardSub">Depois da pergunta 1 de 10</p>
+    </header>
+    <ol class="board-list" id="boardList"></ol>
+    <footer class="q-foot">
+      <button class="btn" id="boardNext">Próxima pergunta</button>
+    </footer>
+  </section>
+
+  <!-- ========== PÓDIO ========== -->
+  <section class="screen podium" id="podium" hidden>
+    <h2 class="title-caps podium-title">Pódio</h2>
+    <div class="podium-stage" id="podiumStage"></div>
+    <footer class="podium-foot">
+      <button class="btn btn-ghost" id="againBtn">Jogar de novo com os mesmos nomes</button>
+      <button class="btn btn-ghost" id="resetBtn">Esvaziar a sala</button>
+    </footer>
+  </section>
+
+  <!-- ========== SENHA ========== -->
+  <section class="screen locked" id="locked" hidden>
+    <form class="lock-card" id="lockForm" novalidate>
+      <h1 class="title-caps">Apresentador</h1>
+      <label for="lockInput">Digite a senha para controlar o quiz</label>
+      <input id="lockInput" type="password" autocomplete="current-password" />
+      <p class="lock-err" id="lockErr" role="alert"></p>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <p class="offline" id="offline" hidden>Sem conexão com o servidor. Tentando reconectar…</p>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/host.js"></script>
+</body>
+</html>

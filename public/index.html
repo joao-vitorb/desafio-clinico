@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#7a004b" />
+  <title>Desafio Clínico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/player.css" />
+</head>
+<body>
+  <header class="bar" id="bar" hidden>
+    <span class="bar-name" id="barName"></span>
+    <span class="bar-score"><strong id="barScore">0</strong> pts</span>
+  </header>
+
+  <main>
+    <!-- PIN -->
+    <section class="screen join" id="sPin" hidden>
+      <div class="join-arc" aria-hidden="true"></div>
+      <div class="join-head">
+        <p class="kicker">Odontologia, 6º período</p>
+        <h1 class="title-caps">Desafio<br />Clínico</h1>
+        <p class="lede">Fratura coronária complicada</p>
+      </div>
+      <form class="join-form" id="pinForm" novalidate>
+        <label for="pinInput">PIN da sala</label>
+        <input id="pinInput" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="Código na tela" />
+        <p class="err" id="pinErr" role="alert"></p>
+        <button class="btn" type="submit">Continuar</button>
+      </form>
+    </section>
+
+    <!-- NOME -->
+    <section class="screen join" id="sName" hidden>
+      <div class="join-arc" aria-hidden="true"></div>
+      <div class="join-head">
+        <p class="kicker">Sala <span id="pinShown"></span></p>
+        <h1 class="title-caps">Como você<br />se chama?</h1>
+        <p class="lede">É o nome que vai aparecer no telão.</p>
+      </div>
+      <form class="join-form" id="nameForm" novalidate>
+        <label for="nameInput">Seu nome</label>
+        <input id="nameInput" autocomplete="given-name" maxlength="18" placeholder="Ex.: Larissa" />
+        <p class="err" id="nameErr" role="alert"></p>
+        <button class="btn" type="submit">Entrar na sala</button>
+      </form>
+    </section>
+
+    <!-- ESPERA -->
+    <section class="screen center" id="sWait" hidden>
+      <div class="tooth-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 120"><path d="M50 14c-9-9-34-14-40 8-4 15 1 30 6 46 4 13 4 40 14 42 9 2 9-26 20-26s11 28 20 26c10-2 10-29 14-42 5-16 10-31 6-46-6-22-31-17-40-8z"/></svg>
+      </div>
+      <h2 class="title-caps" id="waitTitle">Você está<br />na sala</h2>
+      <p class="lede" id="waitText">Olhe para o telão. O quiz começa em instantes.</p>
+    </section>
+
+    <!-- PERGUNTA -->
+    <section class="screen play" id="sQuestion" hidden>
+      <div class="play-top">
+        <p class="q-count" id="qCount"></p>
+        <div class="timer" id="timer"><span id="timerNum"></span></div>
+      </div>
+      <p class="q-text" id="qText"></p>
+      <ol class="answers" id="answers"></ol>
+    </section>
+
+    <!-- RESPONDIDO -->
+    <section class="screen center" id="sSent" hidden>
+      <div class="sent-dot" aria-hidden="true"><span class="chev" id="sentLetter">A</span></div>
+      <h2 class="title-caps">Resposta<br />enviada</h2>
+      <p class="lede">Aguarde o tempo acabar para ver se acertou.</p>
+    </section>
+
+    <!-- RESULTADO -->
+    <section class="screen result" id="sResult" hidden>
+      <div class="result-card" id="resultCard">
+        <p class="result-label" id="resultLabel"></p>
+        <h2 class="title-caps result-title" id="resultTitle"></h2>
+        <p class="result-points" id="resultPoints"></p>
+      </div>
+      <p class="result-answer" id="resultAnswer"></p>
+      <div class="standing">
+        <span class="chev" id="rankNum">1</span>
+        <div>
+          <strong id="rankText"></strong>
+          <span id="gapText"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="screen center final" id="sFinal" hidden>
+      <p class="kicker">Fim do desafio</p>
+      <div class="final-place" id="finalPlace">1º</div>
+      <h2 class="title-caps" id="finalTitle"></h2>
+      <p class="lede" id="finalText"></p>
+    </section>
+  </main>
+
+  <p class="toast" id="toast" hidden></p>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/player.js"></script>
+</body>
+</html>

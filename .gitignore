@@ -1,0 +1,6 @@
+node_modules/
+.env
+# ferramentas locais do editor/IA
+.agents/
+.claude/
+skills-lock.json

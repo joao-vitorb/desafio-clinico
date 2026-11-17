@@ -1,0 +1,21 @@
+{
+  "name": "desafio-clinico",
+  "version": "1.0.0",
+  "description": "Quiz em tempo real (estilo Kahoot) sobre fratura coronária complicada",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "online": "node server.js --online"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.3",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.4"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}

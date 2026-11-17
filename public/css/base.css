@@ -1,0 +1,161 @@
+/* Tokens tirados da apresentação "Fratura Coronária Complicada" */
+:root {
+  --blush: #fdf5f9;
+  --lilac: #f1ddec;
+  --lilac-strong: #e6c6dc;
+  --plum: #7a004b;
+  --plum-deep: #4d002f;
+  --orchid: #a45084;
+  --mauve: #c084a8;
+  --rose: #b47880;
+  --white: #ffffff;
+
+  --opt-0: var(--plum);
+  --opt-1: var(--orchid);
+  --opt-2: var(--rose);
+  --opt-3: var(--mauve);
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+
+  --radius-box: 6px;
+  --radius-pill: 999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--blush);
+  color: var(--plum);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: lining-nums tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.05;
+}
+
+.title-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orchid);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Marcador circular com chevron, como nos slides */
+.chev {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 50%;
+  background: var(--plum);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--plum);
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.85em 1.8em;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+  background: var(--plum-deep);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  background: var(--mauve);
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--plum);
+  box-shadow: inset 0 0 0 2px var(--plum);
+}
+
+.btn-ghost:hover {
+  background: var(--lilac);
+}
+
+/* Anel do cronômetro */
+.timer {
+  --p: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--plum) calc(var(--p) * 360deg), var(--lilac) 0);
+}
+
+.timer::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: var(--blush);
+}
+
+.timer span {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.timer.low {
+  background: conic-gradient(var(--rose) calc(var(--p) * 360deg), var(--lilac) 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
