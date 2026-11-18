@@ -73,7 +73,9 @@ main {
 }
 
 main {
-  overflow: hidden;
+  /* corta só o arco decorativo na lateral; na vertical a página rola se faltar espaço */
+  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
